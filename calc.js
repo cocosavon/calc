@@ -1,4 +1,3 @@
-import MyData from './my_data.json'
 new Vue({
     el: "#vue_component",
     data: {
@@ -10,5 +9,10 @@ new Vue({
     },
     mounted: function(){
         console.log('in mounted')
+
+        axios.get("https://cocosavon.github.io/calc/my_data.json")
+            .then(response => {
+                console.log(response)
+            })
     },
 })
