@@ -3,8 +3,17 @@
     <head>
         <meta charset="utf-8">
         <title>Cocosavon calc</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
     </head>
 <body>
-    AHO
+    <div id="test">
+        <p>{{ aho }}</p>
+    </div>
+    <script>
+        new Vue({
+            el: "#test",
+            data: { aho: 'baka' }
+        })
+    </script>
 </body>
 </html>
