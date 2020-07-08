@@ -20,7 +20,9 @@ new Vue({
     methods: {
         useThisOilClicked: function(){
             if (!this.containsObject(this.selected_oil, this.oils_array)){
-                this.oils_array.push(this.selected_oil)
+                let oil_copied = JSON.parse(JSON.stringify(this.selected_oil))
+                oil_copied.quantity = 0
+                this.oils_array.push(oil_copied)
             } else {
                 console.log('this oil is already added')
             }
@@ -28,7 +30,7 @@ new Vue({
         containsObject: function(obj, arr) {
             var i;
             for (i = 0; i < arr.length; i++) {
-                if (arr[i] === obj) {
+                if (arr[i].name === obj.name) {
                     return true;
                 }
             }

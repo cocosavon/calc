@@ -6,6 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <link rel="stylesheet" href="https://unpkg.com/bootstrap@4.1.0/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
         <script src="https://unpkg.com/jquery@3.5.1/dist/jquery.js"></script>
         <script src="https://unpkg.com/axios@0.2.1/dist/axios.min.js"></script>
         <script src="https://unpkg.com/bootstrap@4.5.0/dist/js/bootstrap.js"></script>
@@ -17,7 +19,7 @@
     <body>
         <div class="container" id="vue_component">
 
-            <div class="row col-sm-12">
+            <div class="row">
                 <div class="input-group">
                     <div class="col-sm-2">
                         <label class="control-label">Oil</label>
@@ -30,17 +32,29 @@
                         </select>
                     </div>
                     <div class="col-sm-3">
-                        <button type="button" class="btn" @click="useThisOilClicked" :disabled="useThisButtonDisabledText">Use this oil</button>
+                        <button type="button" class="btn btn-primary" @click="useThisOilClicked" :disabled="useThisButtonDisabledText"><i class="fa fa-plus-circle" aria-hidden="true"></i> Use this oil</button>
                     </div>
                 </div>
             </div>
 
             <template v-for="oil in oils_array">
-                <div class="row col-sm-12">
-                    <div class="col-sm-5">{{ oil.名前 }}</div>
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-5 col-sm-offset-2">{{ oil.名前 }}</div>
+                    <div class="col-sm-2">
+                        <input 
+                            type="number" 
+                            class="form-control"
+                            :v-model="oil.quantity" 
+                        />
+                    </div>
+                    <div class="col-sm-3">
+                        <button type="button" class="btn btn-danger" @click="deleteThisOilClicked($event, oil)"><i class="fa fa-minus-circle" aria-hidden="true"></i> Delete</button>
+                    </div>
+                    <!--
                     <div class="col-sm-2">{{ oil.saponification_number_naoh }} [mg/g]</div>
                     <div class="col-sm-2">{{ oil.saponification_number_koh }} [mg/g]</div>
-                    <button type="button" class="btn" @click="deleteThisOilClicked($event, oil)">Delete</button>
+                    -->
                 </div>
             </template>
         </div>
