@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="https://unpkg.com/bootstrap@4.1.0/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="./my_style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap" rel="stylesheet">
 
         <script src="https://unpkg.com/jquery@3.5.1/dist/jquery.js"></script>
         <script src="https://unpkg.com/axios@0.2.1/dist/axios.min.js"></script>
@@ -50,7 +51,7 @@
                 <div class="card-body">
                     <template v-for="oil in oils_array">
                         <div class="row">
-                            <span class="col-sm-5 align-middle text-right">{{ oil.名前 }}</span>
+                            <span class="col-sm-5 align-middle">{{ oil.名前 }}</span>
                             <div class="col-sm-2">
                                 <input 
                                     type="number" 

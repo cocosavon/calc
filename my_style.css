@@ -4,6 +4,9 @@ body {
     background: #fff9e0;
     color: grey;
 } 
+h1 {
+    font-family: 'Comfortaa', cursive;
+}
 .main-color {
     color: #e9967a;
 }
