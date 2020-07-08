@@ -22,16 +22,27 @@
                     <div class="col-sm-2">
                         <label class="control-label">Oil</label>
                     </div>
-                    <div class="col-sm-10">
-                        <select class="custom-select" v-model="selection">
+                    <div class="col-sm-7">
+                        <select class="custom-select" v-model="selected_oil">
                             <template v-for="item in options_oil">
-                                <option>{{ item.name }}</option>
+                                <option :value="item">{{ item.name }}</option>
                             </template>
                         </select>
                     </div>
-                    {{ selection }}
+                    <div class="col-sm-3">
+                        <button type="button" class="btn" @click="useThisOilClicked" :disabled="useThisButtonDisabledText">Use this oil</button>
+                    </div>
                 </div>
             </div>
+
+            <template v-for="oil in oils_array">
+                <div class="row col-sm-12">
+                    <div class="col-sm-5">{{ oil.名前 }}</div>
+                    <div class="col-sm-2">{{ oil.saponification_number_naoh }} [mg/g]</div>
+                    <div class="col-sm-2">{{ oil.saponification_number_koh }} [mg/g]</div>
+                    <button type="button" class="btn" @click="deleteThisOilClicked($event, oil)">Delete</button>
+                </div>
+            </template>
         </div>
 
         <!-- The core Firebase JS SDK is always required and must be listed first -->

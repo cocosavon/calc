@@ -2,18 +2,43 @@ new Vue({
     el: "#vue_component",
     data: {
         options_oil: [],
-        selection: null,
+        selected_oil: null,
+        oils_array: [],
     },
     created: function(){
         console.log('in created')
     },
-    methods: {
-        saveToFirebase: function(name) {
-            console.log('in saveToFirebase')
-            var obj = {
-                'name': name
-            };
+    computed: {
+        useThisButtonDisabledText: function(){
+            if(this.selected_oil && this.selected_oil.name){
+                return false
+            } else {
+                return true
+            }
         }
+    },
+    methods: {
+        useThisOilClicked: function(){
+            if (!this.containsObject(this.selected_oil, this.oils_array)){
+                this.oils_array.push(this.selected_oil)
+            } else {
+                console.log('this oil is already added')
+            }
+        },
+        containsObject: function(obj, arr) {
+            var i;
+            for (i = 0; i < arr.length; i++) {
+                if (arr[i] === obj) {
+                    return true;
+                }
+            }
+            return false;
+        },
+        deleteThisOilClicked: function(e, item){
+            console.log('delete: ')
+            console.log(item)
+            this.oils_array.splice(this.oils_array.indexOf(item), 1 );
+        },
     },
     mounted: function(){
         console.log('in mounted')
@@ -23,6 +48,7 @@ new Vue({
         //    .then(response => {
         //        vm.options_oil = response.oils
         //    })
+        vm.options_oil.push({})
 
         let docRef = db.collection("oils")
         console.log(docRef)
