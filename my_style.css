@@ -2,4 +2,8 @@ body {
     margin: 0;
     /*background: url("./bg-pattern.png") repeat;*/
     background: #fff9e0;
+    color: grey;
 } 
+.main-color {
+    color: darksalmon;
+}

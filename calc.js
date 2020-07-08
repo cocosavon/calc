@@ -50,7 +50,6 @@ new Vue({
         //    .then(response => {
         //        vm.options_oil = response.oils
         //    })
-        vm.options_oil.push({})
 
         let docRef = db.collection("oils")
         console.log(docRef)

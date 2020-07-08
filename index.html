@@ -18,46 +18,60 @@
     </head>
 
     <body>
-        <div class="container" id="vue_component">
 
-            <div class="row">
-                <div class="input-group">
-                    <div class="col-sm-2">
-                        <label class="control-label">Oil</label>
-                    </div>
-                    <div class="col-sm-7">
-                        <select class="custom-select" v-model="selected_oil">
-                            <template v-for="item in options_oil">
-                                <option :value="item">{{ item.name }}</option>
-                            </template>
-                        </select>
-                    </div>
-                    <div class="col-sm-3">
-                        <button type="button" class="btn btn-primary" @click="useThisOilClicked" :disabled="useThisButtonDisabledText"><i class="fa fa-plus-circle" aria-hidden="true"></i> Use this oil</button>
+        <div class="container" id="vue_component">
+            <div class="page-header text-center">
+                  <h1 class="main-color">Coco Savon Calc</h1>
+            </div>
+
+            <div class="card card-default">
+                <div class="card-heading">Panel Heading</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="input-group">
+                            <div class="col-sm-8">
+                                <select class="custom-select" v-model="selected_oil">
+                                    <template v-for="item in options_oil">
+                                        <option :value="item">{{ item.name }}</option>
+                                    </template>
+                                </select>
+                            </div>
+                            <div class="col-sm-4">
+                                <button type="button" class="btn btn-primary" @click="useThisOilClicked" :disabled="useThisButtonDisabledText"><i class="fa fa-plus-circle" aria-hidden="true"></i> Use this oil</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <template v-for="oil in oils_array">
-                <div class="row">
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-5 col-sm-offset-2">{{ oil.名前 }}</div>
-                    <div class="col-sm-2">
-                        <input 
-                            type="number" 
-                            class="form-control"
-                            :v-model="oil.quantity" 
-                        />
-                    </div>
-                    <div class="col-sm-3">
-                        <button type="button" class="btn btn-danger" @click="deleteThisOilClicked($event, oil)"><i class="fa fa-minus-circle" aria-hidden="true"></i> Delete</button>
-                    </div>
-                    <!--
-                    <div class="col-sm-2">{{ oil.saponification_number_naoh }} [mg/g]</div>
-                    <div class="col-sm-2">{{ oil.saponification_number_koh }} [mg/g]</div>
-                    -->
+
+            <div class="card card-default">
+                <div class="card-heading">Panel Heading</div>
+                <div class="card-body">
+                    <template v-for="oil in oils_array">
+                        <div class="row">
+                            <span class="col-sm-5 align-middle text-right">{{ oil.名前 }}</span>
+                            <div class="col-sm-2">
+                                <input 
+                                    type="number" 
+                                    class="form-control"
+                                    :v-model="oil.quantity" 
+                                />
+                            </div>
+                            <div class="col-sm-1 align-middle text-left">
+                                [g]
+                            </div>
+                            <div class="col-sm-4">
+                                <button type="button" class="btn btn-danger" @click="deleteThisOilClicked($event, oil)"><i class="fa fa-minus-circle" aria-hidden="true"></i> Delete</button>
+                            </div>
+                            <!--
+                            <div class="col-sm-2">{{ oil.saponification_number_naoh }} [mg/g]</div>
+                            <div class="col-sm-2">{{ oil.saponification_number_koh }} [mg/g]</div>
+                            -->
+                        </div>
+                    </template>
                 </div>
-            </template>
+            </div>
         </div>
 
         <!-- The core Firebase JS SDK is always required and must be listed first -->
