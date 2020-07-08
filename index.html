@@ -21,17 +21,17 @@
 
             <div class="row">
                 <div class="input-group">
-                    <div class="col-sm-2">
+                    <div class="col-xs-2">
                         <label class="control-label">Oil</label>
                     </div>
-                    <div class="col-sm-7">
+                    <div class="col-xs-7">
                         <select class="custom-select" v-model="selected_oil">
                             <template v-for="item in options_oil">
                                 <option :value="item">{{ item.name }}</option>
                             </template>
                         </select>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-xs-3">
                         <button type="button" class="btn btn-primary" @click="useThisOilClicked" :disabled="useThisButtonDisabledText"><i class="fa fa-plus-circle" aria-hidden="true"></i> Use this oil</button>
                     </div>
                 </div>
@@ -39,21 +39,21 @@
 
             <template v-for="oil in oils_array">
                 <div class="row">
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-5 col-sm-offset-2">{{ oil.名前 }}</div>
-                    <div class="col-sm-2">
+                    <div class="col-xs-2"></div>
+                    <div class="col-xs-5 col-xs-offset-2">{{ oil.名前 }}</div>
+                    <div class="col-xs-2">
                         <input 
                             type="number" 
                             class="form-control"
                             :v-model="oil.quantity" 
                         />
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-xs-3">
                         <button type="button" class="btn btn-danger" @click="deleteThisOilClicked($event, oil)"><i class="fa fa-minus-circle" aria-hidden="true"></i> Delete</button>
                     </div>
                     <!--
-                    <div class="col-sm-2">{{ oil.saponification_number_naoh }} [mg/g]</div>
-                    <div class="col-sm-2">{{ oil.saponification_number_koh }} [mg/g]</div>
+                    <div class="col-xs-2">{{ oil.saponification_number_naoh }} [mg/g]</div>
+                    <div class="col-xs-2">{{ oil.saponification_number_koh }} [mg/g]</div>
                     -->
                 </div>
             </template>
