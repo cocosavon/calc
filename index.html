@@ -34,6 +34,33 @@
             </div>
         </div>
 
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-firestore.js"></script>
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+        <!--
+        <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-analytics.js"></script>
+        -->
+
+        <script>
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+                    apiKey: "AIzaSyAM8ZPiUa8kRT6Dcyt6oB3iLyeHnzIuYMg",
+                    authDomain: "cocosavon-calc.firebaseapp.com",
+                    databaseURL: "https://cocosavon-calc.firebaseio.com",
+                    projectId: "cocosavon-calc",
+                    storageBucket: "cocosavon-calc.appspot.com",
+                    messagingSenderId: "1096447095262",
+                    appId: "1:1096447095262:web:c0d752ee13cee0c55ead4f",
+                    measurementId: "G-V4TXHE3DBG"
+                  };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            var db = firebase.firestore();
+            // firebase.analytics();
+        </script>
+
         <script src="./calc.js"></script>
     </body>
 
