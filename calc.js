@@ -2,18 +2,48 @@ new Vue({
     el: "#vue_component",
     data: {
         oils_array: [],
+        ratio_koh_to_naoh: 120.0 / 168,
+        unit_g: 'g',
+        unit_cc: 'cc',
+        oil_specific_weiht: 0.9,
+        percentage_of_water: 34, // [%] 30 to 40,
+        purity_of_naoh: 98, // [%] 95 to 100
+        saponification_rate: 92, // [%] 85 to 95
     },
     created: function(){
         console.log('in created')
     },
     computed: {
-        //useThisButtonDisabledText: function(){
-        //    if(this.selected_oil && this.selected_oil.name){
-        //        return false
-        //    } else {
-        //        return true
-        //    }
-        //}
+        oil_amount_g: function() {
+            let oil_amount_g = 0
+            for (let i=0; i<this.oils_array.length; i++){
+                if (this.oils_array[i].selected){
+                    let quantity = this.oils_array[i].quantity
+                    if (this.oils_array[i].unit == this.unit_cc){
+                        quantity = quantity * oil_specific_weight
+                    }
+                    oil_amount_g = oil_amount_g + parseFloat(quantity)
+                }
+            }
+            return oil_amount_g
+        },
+        naoh_amount_g: function() {
+            let naoh_amount_g = 0
+            for (let i=0; i<this.oils_array.length; i++){
+                if (this.oils_array[i].selected){
+                    let quantity_g = this.oils_array[i].quantity
+                    if (this.oils_array[i].unit == this.unit_cc){
+                        quantity_g = quantity_g * oil_specific_weight
+                    }
+                    naoh_amount_g = naoh_amount_g + parseFloat(quantity_g) * this.oils_array[i].saponification_number / 1000.0 * this.ratio_koh_to_naoh
+                }
+            }
+            return naoh_amount_g / (this.purity_of_naoh / 100.0) * (this.saponification_rate / 100.0)
+        },
+        water_amount_g: function() {
+            let water_amount_g = this.oil_amount_g * this.percentage_of_water / 100.0
+            return water_amount_g
+        }
     },
     methods: {
         oilClicked: function(e, oil){
@@ -23,15 +53,6 @@ new Vue({
             Vue.set(oil, 'selected', !oil.selected)
 
         },
-        //useThisOilClicked: function(){
-        //    if (!this.containsObject(this.selected_oil, this.oils_array)){
-        //        let oil_copied = JSON.parse(JSON.stringify(this.selected_oil))
-        //        oil_copied.quantity = 0
-        //        this.oils_array.push(oil_copied)
-        //    } else {
-        //        console.log('this oil is already added')
-        //    }
-        //},
         containsObject: function(obj, arr) {
             var i;
             for (i = 0; i < arr.length; i++) {
@@ -41,11 +62,6 @@ new Vue({
             }
             return false;
         },
-        //deleteThisOilClicked: function(e, item){
-        //    console.log('delete: ')
-        //    console.log(item)
-        //    this.oils_array.splice(this.oils_array.indexOf(item), 1 );
-        //},
     },
     mounted: function(){
         console.log('in mounted')
@@ -59,6 +75,7 @@ new Vue({
                 oil.selected = false
                 oil.quantity = 0
                 oil.id = doc.id
+                oil.unit = vm.unit_g
                 vm.oils_array.push(oil)
 
                 console.log(oil)

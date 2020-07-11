@@ -59,8 +59,11 @@
                                     <div class="col-8 waves-effect pt-2 pb-2" @click="oilClicked($event, oil)">
                                         {{ oil.name_jp }} ({{ oil.name }})
                                     </div>
-                                    <div v-if="oil.selected" class="col-4">
-                                        <input type="number" v-model="oil.quantity" class="form-control text-right"/>
+                                    <div class="col-3">
+                                        <input type="number" min="0" v-model="oil.quantity" class="form-control text-right"/>
+                                    </div>
+                                    <div class="col-1 pt-2 pb-2">
+                                        [{{ oil.unit }}]
                                     </div>
                                 </div>
                             </template>
@@ -73,6 +76,14 @@
                             </template>
                         </div>
                     </template>
+                    <div class="card">
+                        <div class="card-header">必要な水の量</div>
+                        <div class="card-body">{{ water_amount_g.toFixed(2) }}</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">必要な苛性ソーダの量</div>
+                        <div class="card-body">{{ naoh_amount_g.toFixed(2) }}</div>
+                    </div>
                 </div>
             </div>
 
