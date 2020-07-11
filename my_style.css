@@ -12,8 +12,6 @@ h2 {
     color: #e9967a;
 }
 .bg-selected {
-    background-color: lightblue;
-}
-.bg-unselected {
-    background-color: lightgray;
+    /*background-color: lightblue;*/
+    background-color: rgba(0, 188, 212, 0.3)
 }
