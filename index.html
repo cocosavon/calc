@@ -25,13 +25,13 @@
 
 
         <link rel="stylesheet" href="./my_style.css">
-        <script src="https://unpkg.com/axios@0.2.1/dist/axios.min.js"></script>
         <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
 <!--
         <link rel="stylesheet" href="https://unpkg.com/bootstrap@4.1.0/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap" rel="stylesheet">
 
+        <script src="https://unpkg.com/axios@0.2.1/dist/axios.min.js"></script>
         <script src="https://unpkg.com/jquery@3.5.1/dist/jquery.js"></script>
         <script src="https://unpkg.com/bootstrap@4.5.0/dist/js/bootstrap.js"></script>
 -->
@@ -41,7 +41,9 @@
 
     <body>
 
-
+        <div class="card card-header text-center">
+              <h2 class="main-color">Coco Savon Calc</h2>
+        </div>
 
         <div class="container" id="vue_component">
 
@@ -77,58 +79,32 @@
             </div>
             <!-- Material form subscription -->
 
-            <div class="page-header text-center">
-                  <h1 class="main-color">Coco Savon Calc</h1>
-            </div>
 
-            <div class="card card-default">
-                <div class="card-heading">Panel Heading</div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="input-group">
-                            <div class="col-sm-8">
-                                <select class="custom-select" v-model="selected_oil">
-                                    <template v-for="item in options_oil">
-                                        <option :value="item">{{ item.name }}</option>
-                                    </template>
-                                </select>
-                            </div>
-                            <div class="col-sm-4">
-                                <button type="button" class="btn btn-primary" @click="useThisOilClicked" :disabled="useThisButtonDisabledText"><i class="fa fa-plus-circle" aria-hidden="true"></i> Use this oil</button>
-                            </div>
-                        </div>
-                    </div>
+            <div class="card">
+                <div class="card-header info-color white-text text-center py-4">
+                    油脂
                 </div>
-            </div>
-
-
-            <div class="card card-default">
-                <div class="card-heading">Panel Heading</div>
                 <div class="card-body">
                     <template v-for="oil in oils_array">
-                        <div class="row">
-                            <span class="col-sm-5 align-middle">{{ oil.名前 }}</span>
-                            <div class="col-sm-2">
-                                <input 
-                                    type="number" 
-                                    class="form-control"
-                                    :v-model="oil.quantity" 
-                                />
-                            </div>
-                            <div class="col-sm-1 align-middle text-left">
-                                [g]
-                            </div>
-                            <div class="col-sm-4">
-                                <button type="button" class="btn btn-danger" @click="deleteThisOilClicked($event, oil)"><i class="fa fa-minus-circle" aria-hidden="true"></i> Delete</button>
-                            </div>
-                            <!--
-                            <div class="col-sm-2">{{ oil.saponification_number_naoh }} [mg/g]</div>
-                            <div class="col-sm-2">{{ oil.saponification_number_koh }} [mg/g]</div>
-                            -->
+                        <div class="row" :key="oil.id">
+                                <template v-if="oil.selected">
+                                    <div class="col-sm-6 waves-effect pt-2 pb-2 bg-selected" @click="oilClicked($event, oil)">
+                                        {{ oil.名前 }} ({{ oil.name }})
+                                    </div>
+                                    <div v-if="oil.selected" class="col-sm-6 bg-selected">
+                                        <input type="text" v-model="oil.quantity" class="form-control"/>
+                                    </div>
+                                </template>
+                                <template v-else>
+                                    <div class="waves-effect pt-2 pb-2" @click="oilClicked($event, oil)">
+                                        {{ oil.名前 }} ({{ oil.name }})
+                                    </div>
+                                </template>
                         </div>
                     </template>
                 </div>
             </div>
+
         </div>
 
         <!-- The core Firebase JS SDK is always required and must be listed first -->

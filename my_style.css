@@ -4,9 +4,16 @@ body {
     background: #fff9e0;
     color: grey;
 } 
-h1 {
-    font-family: 'Comfortaa', cursive;
+h2 {
+    /* font-family: 'Comfortaa', cursive; */
+    font-family: 'Varela Round', sans-serif;
 }
 .main-color {
     color: #e9967a;
+}
+.bg-selected {
+    background-color: lightblue;
+}
+.bg-unselected {
+    background-color: lightgray;
 }
