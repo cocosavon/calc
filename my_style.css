@@ -4,9 +4,11 @@ body {
     background: #fff9e0;
     color: grey;
 } 
-h2 {
-    /* font-family: 'Comfortaa', cursive; */
-    font-family: 'Varela Round', sans-serif;
+.main-title {
+    /* font-family: 'Comfortaa', cursive; 
+    font-family: 'Varela Round', sans-serif; */
+    font-family: 'Fredericka the Great', cursive;
+    font-size: 2em;
 }
 .main-color {
     color: #e9967a;

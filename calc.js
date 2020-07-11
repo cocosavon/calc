@@ -67,8 +67,7 @@ new Vue({
         console.log('in mounted')
         let vm = this
 
-        let docRef = db.collection("oils")
-        console.log(docRef)
+        let docRef = db.collection("oils").orderBy("category")
         docRef.get().then(function(res) {
             res.forEach(doc => {
                 let oil = doc.data()
