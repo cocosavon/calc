@@ -1,6 +1,7 @@
 new Vue({
     el: "#vue_component",
     data: {
+        loading: false,
         oils_array: [],
         ratio_koh_to_naoh: 120.0 / 168,
         unit_g: 'g',
@@ -10,9 +11,6 @@ new Vue({
         purity_of_naoh: 98, // [%] 95 to 100
         saponification_rate: 92, // [%] 85 to 95
         configurationShown: null,
-    },
-    created: function(){
-        console.log('in created')
     },
     watch: {
         configurationShown: function(){
@@ -78,9 +76,9 @@ new Vue({
         },
     },
     created: function(){
-        console.log('in mounted')
         let vm = this
 
+        vm.loading = true
         let docRef = db.collection("oils").orderBy("category")
         docRef.get().then(function(res) {
             res.forEach(doc => {
@@ -93,8 +91,10 @@ new Vue({
 
                 console.log(oil)
             });
+            vm.loading = false
         }).catch(function(error) {
             console.log("Error getting document:", error);
+            vm.loading = false
         });
     },
     mounted: function(){
