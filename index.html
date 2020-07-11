@@ -56,17 +56,17 @@
                         <div class="container">
                             <template v-if="oil.selected">
                                 <div class="row bg-selected rounded mb-2" :key="oil.id">
-                                    <div class="col-sm-8 waves-effect pt-2 pb-2" @click="oilClicked($event, oil)">
+                                    <div class="col-8 waves-effect pt-2 pb-2" @click="oilClicked($event, oil)">
                                         {{ oil.名前 }} ({{ oil.name }})
                                     </div>
-                                    <div v-if="oil.selected" class="col-sm-2">
+                                    <div v-if="oil.selected" class="col-4">
                                         <input type="number" v-model="oil.quantity" class="form-control text-right"/>
                                     </div>
                                 </div>
                             </template>
                             <template v-else>
                                 <div class="row mb-2" :key="oil.id">
-                                    <div class="col-sm-12 waves-effect pt-2 pb-2" @click="oilClicked($event, oil)">
+                                    <div class="col-12 waves-effect pt-2 pb-2" @click="oilClicked($event, oil)">
                                         {{ oil.名前 }} ({{ oil.name }})
                                     </div>
                                 </div>
