@@ -18,3 +18,7 @@ h2 {
 .text-right {
     text-align: right;
 }
+.result-color {
+    /* background-color: #ff8c00; */
+    background-color: darkorange;
+}

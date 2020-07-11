@@ -42,51 +42,62 @@
     <body>
 
         <div class="card card-header text-center">
-              <h2 class="main-color">Coco Savon Calc</h2>
+              <div class="main-color h2">Coco Savon Calc</div>
         </div>
 
         <div class="container" id="vue_component">
 
-            <div class="card">
-                <div class="card-header info-color white-text text-center py-4">
+            <div class="card mb-2">
+                <div class="card-header info-color white-text text-center py-2">
                     油脂
                 </div>
                 <div class="card-body">
                     <template v-for="oil in oils_array">
                         <div class="container">
                             <template v-if="oil.selected">
-                                <div class="row bg-selected rounded mb-2" :key="oil.id">
-                                    <div class="col-8 waves-effect pt-2 pb-2" @click="oilClicked($event, oil)">
-                                        {{ oil.name_jp }} ({{ oil.name }})
+                                <div class="row bg-selected rounded mb-1" :key="oil.id">
+                                    <div class="col-7 waves-effect pt-1" @click="oilClicked($event, oil)">
+                                        <div class="">{{ oil.name_jp }}</div>
+                                        <div class="">({{ oil.name }})</div>
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-3 pt-2">
                                         <input type="number" min="0" v-model="oil.quantity" class="form-control text-right"/>
                                     </div>
-                                    <div class="col-1 pt-2 pb-2">
-                                        [{{ oil.unit }}]
+                                    <div class="col-1 pt-3">
+                                        {{ oil.unit }}
                                     </div>
                                 </div>
                             </template>
                             <template v-else>
-                                <div class="row mb-2" :key="oil.id">
-                                    <div class="col-12 waves-effect pt-2 pb-2" @click="oilClicked($event, oil)">
-                                        {{ oil.name_jp }} ({{ oil.name }})
+                                <div class="row mb-1" :key="oil.id">
+                                    <div class="col-12 waves-effect pt-1 pb-1" @click="oilClicked($event, oil)">
+                                        <div class="">{{ oil.name_jp }}</div>
+                                        <div class="">({{ oil.name }})</div>
                                     </div>
                                 </div>
                             </template>
                         </div>
                     </template>
-                    <div class="card">
-                        <div class="card-header">必要な水の量</div>
-                        <div class="card-body">{{ water_amount_g.toFixed(2) }}</div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">必要な苛性ソーダの量</div>
-                        <div class="card-body">{{ naoh_amount_g.toFixed(2) }}</div>
+                </div>
+            </div>
+
+            <div class="card mb-2">
+                <div class="card-header result-color text-center white-text py-2">必要な水の量</div>
+                <div class="card-body">
+                    <div class="text-right display-4">
+                        {{ water_amount_g.toFixed(2) }} g
                     </div>
                 </div>
             </div>
 
+            <div class="card mb-2">
+                <div class="card-header result-color text-center white-text py-2">必要な苛性ソーダの量</div>
+                <div class="card-body">
+                    <div class="text-right display-4">
+                        {{ naoh_amount_g.toFixed(2) }} g
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- The core Firebase JS SDK is always required and must be listed first -->
