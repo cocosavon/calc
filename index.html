@@ -47,60 +47,29 @@
 
         <div class="container" id="vue_component">
 
-            <!-- Material form subscription -->
-            <div class="card">
-
-                <h5 class="card-header info-color white-text text-center py-4">
-                    <strong>Subscribe</strong>
-                </h5>
-
-                <!--Card content-->
-                <div class="card-body px-lg-5">
-                    <!-- Form -->
-                    <form class="text-center" style="color: #757575;" action="#!">
-                        <p>Join our mailing list. We write rarely, but only the best content.</p>
-                        <p>
-                            <a href="" target="_blank">See the last newsletter</a>
-                        </p>
-                        <!-- Name -->
-                        <div class="md-form mt-3">
-                            <input type="text" id="materialSubscriptionFormPasswords" class="form-control">
-                            <label for="materialSubscriptionFormPasswords">Name</label>
-                        </div>
-                                                                                                                                                                                                                                <!-- E-mai -->
-                        <div class="md-form">
-                            <input type="email" id="materialSubscriptionFormEmail" class="form-control">
-                            <label for="materialSubscriptionFormEmail">E-mail</label>
-                        </div>
-                        <!-- Sign in button -->
-                        <button class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect" type="submit">Sign in</button>
-                    </form>
-                </div>
-            </div>
-            <!-- Material form subscription -->
-
-
             <div class="card">
                 <div class="card-header info-color white-text text-center py-4">
                     油脂
                 </div>
                 <div class="card-body">
                     <template v-for="oil in oils_array">
-                        <div class="row" :key="oil.id">
-                                <template v-if="oil.selected">
-                                    <div class="col-sm-6 waves-effect pt-2 pb-2 bg-selected" @click="oilClicked($event, oil)">
-                                        {{ oil.名前 }} ({{ oil.name }})
-                                    </div>
-                                    <div v-if="oil.selected" class="col-sm-6 bg-selected">
-                                        <input type="text" v-model="oil.quantity" class="form-control"/>
-                                    </div>
-                                </template>
-                                <template v-else>
-                                    <div class="waves-effect pt-2 pb-2" @click="oilClicked($event, oil)">
-                                        {{ oil.名前 }} ({{ oil.name }})
-                                    </div>
-                                </template>
-                        </div>
+                        <template v-if="oil.selected">
+                            <div class="row bg-selected" :key="oil.id">
+                                <div class="col-xs-6 waves-effect pt-2 pb-2" @click="oilClicked($event, oil)">
+                                    {{ oil.名前 }} ({{ oil.name }})
+                                </div>
+                                <div v-if="oil.selected" class="col-xs-6">
+                                    <input type="text" v-model="oil.quantity" class="form-control"/>
+                                </div>
+                            </div>
+                        </template>
+                        <template v-else>
+                            <div class="row" :key="oil.id">
+                                <div class="col-xs-12 waves-effect pt-2 pb-2" @click="oilClicked($event, oil)">
+                                    {{ oil.名前 }} ({{ oil.name }})
+                                </div>
+                            </div>
+                        </template>
                     </template>
                 </div>
             </div>
