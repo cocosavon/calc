@@ -99,6 +99,51 @@
                     </div>
                 </div>
             </div>
+
+            <div class="card mb-2">
+                <div class="card-header configuration-color text-center white-text py-2" @click="configurationClicked">その他の設定</div>
+                <div class="card-body" id="configuration">
+                    <div class="row">
+                        <div class="col-7 small pt-1">
+                            水の油脂に対する割合
+                            <div class="small">
+                                通常 30 〜 40 %
+                            </div>
+                        </div>
+                        <div class="col-3 small">
+                            <input type="number" min="30" max="40" v-model="percentage_of_water" class="form-control text-right" />
+                        </div>
+                        <div class="col-1 pt-2">
+                            %
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-7 small pt-2">
+                            苛性ソーダの純度
+                        </div>
+                        <div class="col-3 small">
+                            <input type="number" min="30" max="40" v-model="purity_of_naoh" class="form-control text-right" />
+                        </div>
+                        <div class="col-1 pt-2">
+                            %
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-7 small pt-1">
+                            鹸化率
+                            <div class="small">
+                                通常 85 〜 95 %
+                            </div>
+                        </div>
+                        <div class="col-3 small">
+                            <input type="number" min="30" max="40" v-model="saponification_rate" class="form-control text-right" />
+                        </div>
+                        <div class="col-1 pt-2">
+                            %
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- The core Firebase JS SDK is always required and must be listed first -->

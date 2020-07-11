@@ -9,9 +9,20 @@ new Vue({
         percentage_of_water: 34, // [%] 30 to 40,
         purity_of_naoh: 98, // [%] 95 to 100
         saponification_rate: 92, // [%] 85 to 95
+        configurationShown: null,
     },
     created: function(){
         console.log('in created')
+    },
+    watch: {
+        configurationShown: function(){
+            let el_config = $('#configuration')
+            if (this.configurationShown){
+                el_config.slideDown()
+            } else {
+                el_config.slideUp()
+            }
+        }
     },
     computed: {
         oil_amount_g: function() {
@@ -46,6 +57,9 @@ new Vue({
         }
     },
     methods: {
+        configurationClicked: function() {
+            this.configurationShown = !this.configurationShown
+        },
         oilClicked: function(e, oil){
             console.log('oilClicked')
             console.log(oil)
@@ -63,7 +77,7 @@ new Vue({
             return false;
         },
     },
-    mounted: function(){
+    created: function(){
         console.log('in mounted')
         let vm = this
 
@@ -83,4 +97,7 @@ new Vue({
             console.log("Error getting document:", error);
         });
     },
+    mounted: function(){
+        this.configurationShown = false
+    }
 })
