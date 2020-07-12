@@ -60,6 +60,33 @@ new Vue({
         }
     },
     methods: {
+        plus100: function(e, oil){
+            oil.quantity = oil.quantity + 100
+        },
+        plus10: function(e, oil){
+            oil.quantity = oil.quantity + 10
+        },
+        plus1: function(e, oil){
+            oil.quantity = oil.quantity + 1
+        },
+        minus100: function(e, oil){
+            oil.quantity = oil.quantity - 100
+            if (oil.quantity < 0){
+                oil.quantity = 0
+            }
+        },
+        minus10: function(e, oil){
+            oil.quantity = oil.quantity - 10
+            if (oil.quantity < 0){
+                oil.quantity = 0
+            }
+        },
+        minus1: function(e, oil){
+            oil.quantity = oil.quantity - 1
+            if (oil.quantity < 0){
+                oil.quantity = 0
+            }
+        },
         confClicked: function(para) {
             if(para === 'percentage_of_water'){
                 this.selected_percentage_of_water = !this.selected_percentage_of_water

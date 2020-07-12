@@ -6,7 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+        <!-- link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- Google Fonts -->
         <!--link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"-->
         <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap" rel="stylesheet">
@@ -62,30 +63,62 @@
                     </template>
                     <template v-else>
                         <template v-for="oil in oils_array">
-                            <div class="container">
-                                <template v-if="oil.selected">
-                                    <div class="row bg-selected rounded mb-1" :key="oil.id">
+                            <template v-if="oil.selected">
+                                <div class="container mb-2 bg-selected rounded">
+                                    <div class="row bg-selected rounded" :key="oil.id">
                                         <div class="col-6 waves-effect pt-1" @click="oilClicked($event, oil)">
                                             <div class="small">{{ oil.name_jp }}</div>
                                             <div class="small">({{ oil.name }})</div>
                                         </div>
-                                        <div class="col-4 pt-2 pb-2">
-                                            <input type="number" min="0" v-model="oil.quantity" class="form-control text-right"/>
+                                        <div class="col-4 pt-1 text-right h1">
+                                            {{ oil.quantity }}
                                         </div>
                                         <div class="col-1 pt-3">
                                             {{ oil.unit }}
                                         </div>
                                     </div>
-                                </template>
-                                <template v-else>
-                                    <div class="row mb-1" :key="oil.id">
+                                    <div class="row small">
+                                        <div class="col-2 mx-0 px-0 text-center" @click="plus100($event, oil)">
+                                            <button type="button" class="btn btn-cyan mx-0 my-0 px-2 py-1">
+                                                <i class="fa fa-plus-circle" aria-hidden="true"></i>100
+                                            </button>
+                                        </div>
+                                        <div class="col-2 mx-0 px-0 text-center" @click="plus10($event, oil)">
+                                            <button type="button" class="btn btn-cyan mx-0 my-0 px-2 py-1">
+                                                <i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;10
+                                        </div>
+                                        <div class="col-2 mx-0 px-0 text-center" @click="plus1($event, oil)">
+                                            <button type="button" class="btn btn-cyan mx-0 my-0 px-2 py-1">
+                                                <i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;&nbsp;1
+                                        </div>
+                                        <div class="col-2 mx-0 px-0 text-center" @click="minus1($event, oil)">
+                                            <button type="button" class="btn btn-deep-orange mx-0 my-0 px-2 py-1">
+                                                <i class="fa fa-minus-circle" aria-hidden="true"></i>&nbsp;&nbsp;1
+                                            </button>
+                                        </div>
+                                        <div class="col-2 mx-0 px-0 text-center" @click="minus10($event, oil)">
+                                            <button type="button" class="btn btn-deep-orange mx-0 my-0 px-2 py-1">
+                                                <i class="fa fa-minus-circle" aria-hidden="true"></i>&nbsp;10
+                                            </button>
+                                        </div>
+                                        <div class="col-2 mx-0 px-0 text-center" @click="minus100($event, oil)">
+                                            <button type="button" class="btn btn-deep-orange mx-0 my-0 px-2 py-1">
+                                                <i class="fa fa-minus-circle" aria-hidden="true"></i>100
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+                            <template v-else>
+                                <div class="container mb-2">
+                                    <div class="row" :key="oil.id">
                                         <div class="col-12 waves-effect pt-1 pb-1" @click="oilClicked($event, oil)">
                                             <div class="small">{{ oil.name_jp }}</div>
                                             <div class="small">({{ oil.name }})</div>
                                         </div>
                                     </div>
-                                </template>
-                            </div>
+                                </div>
+                            </template>
                         </template>
                     </template>
                 </div>
