@@ -16,6 +16,9 @@ new Vue({
         selected_percentage_of_water: false,
         selected_purity_of_naoh: false,
         selected_saponification_rate: false,
+        percentage_of_water_range: [30, 40],
+        purity_of_naoh_range: [95, 100],
+        saponification_rate_range: [85, 95],
     },
     watch: {
         configurationShown: function(){
@@ -60,6 +63,42 @@ new Vue({
         }
     },
     methods: {
+        configPlus1: function(e, config_name){
+            if (config_name === 'percentage_of_water'){
+                this.percentage_of_water += 1
+                if (this.percentage_of_water > Math.max(...this.percentage_of_water_range)){
+                    this.percentage_of_water = Math.max(...this.percentage_of_water_range)
+                }
+            } else if (config_name === 'purity_of_naoh'){
+                this.purity_of_naoh += 1
+                if (this.purity_of_naoh > Math.max(...this.purity_of_naoh_range)){
+                    this.purity_of_naoh= Math.max(...this.purity_of_naoh_range)
+                }
+            } else if (config_name === 'saponification_rate'){
+                this.saponification_rate += 1
+                if (this.saponification_rate > Math.max(...this.saponification_rate_range)){
+                    this.saponification_rate= Math.max(...this.saponification_rate_range)
+                }
+            }
+        },
+        configMinus1: function(e, config_name){
+            if (config_name === 'percentage_of_water'){
+                this.percentage_of_water -= 1
+                if (this.percentage_of_water < Math.min(...this.percentage_of_water_range)){
+                    this.percentage_of_water = Math.min(...this.percentage_of_water_range)
+                }
+            } else if (config_name === 'purity_of_naoh'){
+                this.purity_of_naoh -= 1
+                if (this.purity_of_naoh < Math.min(...this.purity_of_naoh_range)){
+                    this.purity_of_naoh= Math.min(...this.purity_of_naoh_range)
+                }
+            } else if (config_name === 'saponification_rate'){
+                this.saponification_rate -= 1
+                if (this.saponification_rate < Math.min(...this.saponification_rate_range)){
+                    this.saponification_rate= Math.min(...this.saponification_rate_range)
+                }
+            }
+        },
         plus100: function(e, oil){
             oil.quantity = oil.quantity + 100
         },

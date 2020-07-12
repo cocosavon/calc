@@ -125,35 +125,137 @@
             </div>
 
             <div class="card mb-2">
-                <div class="card-header configuration-color text-center white-text py-2" @click="configurationClicked">その他の設定</div>
+                <div class="card-header configuration-color text-center waves-effect white-text py-2" @click="configurationClicked">その他の設定</div>
                 <div class="card-body" id="configuration">
-                    <div class="row">
-                        <div class="col-7 small pt-1" @click="confClicked('percentage_of_water')">
-                            油脂に対する精製水の割合
-                            <div class="small">
-                                通常 30 〜 40 %
+                    <template v-if="selected_percentage_of_water">
+                        <div class="container mb-2 bg-selected rounded">
+                            <div class="row">
+                                <div class="col-7 small pt-1" @click="confClicked('percentage_of_water')">
+                                    油脂に対する精製水の割合<div class="small">通常 30 〜 40 %</div>
+                                </div>
+                                <div class="col-3 rounded mb-1 text-right h3">
+                                    {{ percentage_of_water }}
+                                </div>
+                                <div class="col-1 pt-2">
+                                    %
+                                </div>
+                            </div>
+                            <div class="row small">
+                                <div class="col-2 mx-0 px-0 text-center" @click="configPlus1($event, 'percentage_of_water')">
+                                    <button type="button" class="btn btn-cyan mx-0 my-0 px-2 py-1">
+                                        <i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;&nbsp;1
+                                </div>
+                                <div class="col-2 mx-0 px-0 text-center" @click="configMinus1($event, 'percentage_of_water')">
+                                    <button type="button" class="btn btn-deep-orange mx-0 my-0 px-2 py-1">
+                                        <i class="fa fa-minus-circle" aria-hidden="true"></i>&nbsp;&nbsp;1
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                        <template v-if="selected_percentage_of_water">
-                            <div class="col-3 bg-selected rounded mb-1">
-                                <input type="number" min="30" max="40" v-model="percentage_of_water" class="form-control text-right" />
+                    </template>
+                    <template v-else>
+                        <div class="container mb-2 rounded">
+                            <div class="row">
+                                <div class="col-7 small pt-1" @click="confClicked('percentage_of_water')">
+                                    油脂に対する精製水の割合<div class="small">通常 30 〜 40 %</div>
+                                </div>
+                                <div class="col-3 rounded mb-1 text-right h3">
+                                    {{ percentage_of_water }}
+                                </div>
+                                <div class="col-1 pt-2">
+                                    %
+                                </div>
                             </div>
-                        </template>
-                        <template v-else>
-                            <div class="col-3 text-right">
-                                <span>{{ percentage_of_water }}</span>
-                            </div>
-                        </template>
-                        <div class="col-1 pt-2">
-                            %
                         </div>
-                    </div>
+                    </template>
+
+                    <template v-if="selected_purity_of_naoh">
+                        <div class="container mb-2 bg-selected rounded">
+                            <div class="row">
+                                <div class="col-7 small pt-1" @click="confClicked('purity_of_naoh')">
+                                    苛性ソーダの純度<div class="small">通常 95 〜 100 %</div>
+                                </div>
+                                <div class="col-3 rounded mb-1 text-right h3">
+                                    {{ purity_of_naoh}}
+                                </div>
+                                <div class="col-1 pt-2">
+                                    %
+                                </div>
+                            </div>
+                            <div class="row small">
+                                <div class="col-2 mx-0 px-0 text-center" @click="configPlus1($event, 'purity_of_naoh')">
+                                    <button type="button" class="btn btn-cyan mx-0 my-0 px-2 py-1">
+                                        <i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;&nbsp;1
+                                </div>
+                                <div class="col-2 mx-0 px-0 text-center" @click="configMinus1($event, 'purity_of_naoh')">
+                                    <button type="button" class="btn btn-deep-orange mx-0 my-0 px-2 py-1">
+                                        <i class="fa fa-minus-circle" aria-hidden="true"></i>&nbsp;&nbsp;1
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                    <template v-else>
+                        <div class="container mb-2 rounded">
+                            <div class="row">
+                                <div class="col-7 small pt-1" @click="confClicked('purity_of_naoh')">
+                                    苛性ソーダの純度<div class="small">通常 95 〜 100 %</div>
+                                </div>
+                                <div class="col-3 rounded mb-1 text-right h3">
+                                    {{ purity_of_naoh }}
+                                </div>
+                                <div class="col-1 pt-2">
+                                    %
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+
+                    <template v-if="selected_saponification_rate">
+                        <div class="container mb-2 bg-selected rounded">
+                            <div class="row">
+                                <div class="col-7 small pt-1" @click="confClicked('saponification_rate')">
+                                    鹸化率<div class="small">通常 85 〜 95 %</div>
+                                </div>
+                                <div class="col-3 rounded mb-1 text-right h3">
+                                    {{ saponification_rate }}
+                                </div>
+                                <div class="col-1 pt-2">
+                                    %
+                                </div>
+                            </div>
+                            <div class="row small">
+                                <div class="col-2 mx-0 px-0 text-center" @click="configPlus1($event, 'saponification_rate')">
+                                    <button type="button" class="btn btn-cyan mx-0 my-0 px-2 py-1">
+                                        <i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;&nbsp;1
+                                </div>
+                                <div class="col-2 mx-0 px-0 text-center" @click="configMinus1($event, 'saponification_rate')">
+                                    <button type="button" class="btn btn-deep-orange mx-0 my-0 px-2 py-1">
+                                        <i class="fa fa-minus-circle" aria-hidden="true"></i>&nbsp;&nbsp;1
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                    <template v-else>
+                        <div class="container mb-2 rounded">
+                            <div class="row">
+                                <div class="col-7 small pt-1" @click="confClicked('saponification_rate')">
+                                    鹸化率<div class="small">通常 85 〜 95 %</div>
+                                </div>
+                                <div class="col-3 rounded mb-1 text-right h3">
+                                    {{ saponification_rate }}
+                                </div>
+                                <div class="col-1 pt-2">
+                                    %
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                    <!--
                     <div class="row">
                         <div class="col-7 small pt-2" @click="confClicked('purity_of_naoh')">
-                            苛性ソーダの純度
-                            <div class="small">
-                                通常 98 〜 100 %
-                            </div>
+                            苛性ソーダの純度<div class="small">通常 98 〜 100 %</div>
                         </div>
                         <template v-if="selected_purity_of_naoh">
                             <div class="col-3 bg-selected rounded mb-1">
@@ -171,10 +273,7 @@
                     </div>
                     <div class="row">
                         <div class="col-7 small pt-1" @click="confClicked('saponification_rate')">
-                            鹸化率
-                            <div class="small">
-                                通常 85 〜 95 %
-                            </div>
+                            鹸化率<div class="small">通常 85 〜 95 %</div>
                         </div>
                         <template v-if="selected_saponification_rate">
                             <div class="col-3 bg-selected rounded mb-1">
@@ -190,6 +289,7 @@
                             %
                         </div>
                     </div>
+                    -->
                 </div>
             </div>
 
