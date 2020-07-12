@@ -43,7 +43,7 @@
     <body>
 
         <div class="card card-header text-center">
-              <div class="main-title main-color py-0">Coco Savon Calc</div>
+            <div class="main-title main-color py-0">Coco Savon Calc</div>
         </div>
 
 
@@ -69,7 +69,7 @@
                                             <div class="small">{{ oil.name_jp }}</div>
                                             <div class="small">({{ oil.name }})</div>
                                         </div>
-                                        <div class="col-4 pt-2">
+                                        <div class="col-4 pt-2 pb-2">
                                             <input type="number" min="0" v-model="oil.quantity" class="form-control text-right"/>
                                         </div>
                                         <div class="col-1 pt-3">
@@ -95,40 +95,64 @@
                 <div class="card-header configuration-color text-center white-text py-2" @click="configurationClicked">その他の設定</div>
                 <div class="card-body" id="configuration">
                     <div class="row">
-                        <div class="col-7 small pt-1">
-                            水の油脂に対する割合
+                        <div class="col-7 small pt-1" @click="confClicked('percentage_of_water')">
+                            油脂に対する精製水の割合
                             <div class="small">
                                 通常 30 〜 40 %
                             </div>
                         </div>
-                        <div class="col-3 small">
-                            <input type="number" min="30" max="40" v-model="percentage_of_water" class="form-control text-right" />
-                        </div>
+                        <template v-if="selected_percentage_of_water">
+                            <div class="col-3 bg-selected rounded mb-1">
+                                <input type="number" min="30" max="40" v-model="percentage_of_water" class="form-control text-right" />
+                            </div>
+                        </template>
+                        <template v-else>
+                            <div class="col-3 text-right">
+                                <span>{{ percentage_of_water }}</span>
+                            </div>
+                        </template>
                         <div class="col-1 pt-2">
                             %
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-7 small pt-2">
+                        <div class="col-7 small pt-2" @click="confClicked('purity_of_naoh')">
                             苛性ソーダの純度
+                            <div class="small">
+                                通常 98 〜 100 %
+                            </div>
                         </div>
-                        <div class="col-3 small">
-                            <input type="number" min="30" max="40" v-model="purity_of_naoh" class="form-control text-right" />
-                        </div>
+                        <template v-if="selected_purity_of_naoh">
+                            <div class="col-3 bg-selected rounded mb-1">
+                                <input type="number" min="30" max="40" v-model="purity_of_naoh" class="form-control text-right" />
+                            </div>
+                        </template>
+                        <template v-else>
+                            <div class="col-3 text-right">
+                                {{ purity_of_naoh }}
+                            </div>
+                        </template>
                         <div class="col-1 pt-2">
                             %
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-7 small pt-1">
+                        <div class="col-7 small pt-1" @click="confClicked('saponification_rate')">
                             鹸化率
                             <div class="small">
                                 通常 85 〜 95 %
                             </div>
                         </div>
-                        <div class="col-3 small">
-                            <input type="number" min="30" max="40" v-model="saponification_rate" class="form-control text-right" />
-                        </div>
+                        <template v-if="selected_saponification_rate">
+                            <div class="col-3 bg-selected rounded mb-1">
+                                <input type="number" min="30" max="40" v-model="saponification_rate" class="form-control text-right" />
+                            </div>
+                        </template>
+                        <template v-else>
+                            <div class="col-3 text-right">
+                                {{ saponification_rate }}
+                            </div>
+                        </template>
                         <div class="col-1 pt-2">
                             %
                         </div>
@@ -137,7 +161,7 @@
             </div>
 
             <div class="card mb-2">
-                <div class="card-header result-color text-center white-text py-2">必要な水の量</div>
+                <div class="card-header result-color text-center white-text py-2">必要な精製水の質量</div>
                 <div class="card-body">
                     <div class="text-right display-4">
                         {{ water_amount_g.toFixed(0) }} g
@@ -146,7 +170,7 @@
             </div>
 
             <div class="card mb-2">
-                <div class="card-header result-color text-center white-text py-2">必要な苛性ソーダの量</div>
+                <div class="card-header result-color text-center white-text py-2">必要な苛性ソーダの質量</div>
                 <div class="card-body">
                     <div class="text-right display-4">
                         {{ naoh_amount_g.toFixed(0) }} g

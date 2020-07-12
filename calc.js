@@ -10,7 +10,12 @@ new Vue({
         percentage_of_water: 34, // [%] 30 to 40,
         purity_of_naoh: 98, // [%] 95 to 100
         saponification_rate: 92, // [%] 85 to 95
+
+        // Other configurations
         configurationShown: null,
+        selected_percentage_of_water: false,
+        selected_purity_of_naoh: false,
+        selected_saponification_rate: false,
     },
     watch: {
         configurationShown: function(){
@@ -55,6 +60,15 @@ new Vue({
         }
     },
     methods: {
+        confClicked: function(para) {
+            if(para === 'percentage_of_water'){
+                this.selected_percentage_of_water = !this.selected_percentage_of_water
+            } else if (para === 'purity_of_naoh'){
+                this.selected_purity_of_naoh = !this.selected_purity_of_naoh
+            } else if (para === 'saponification_rate'){
+                this.selected_saponification_rate = !this.selected_saponification_rate
+            }
+        },
         configurationClicked: function() {
             this.configurationShown = !this.configurationShown
         },
