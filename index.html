@@ -11,6 +11,7 @@
         <!-- Google Fonts -->
         <!--link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"-->
         <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!-- Bootstrap core CSS -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
         <!-- Material Design Bootstrap -->
@@ -51,7 +52,9 @@
         <div class="container px-0" id="vue_component">
             <div class="card mb-2">
                 <div class="card-header info-color white-text text-center py-2">
-                    油脂
+                    <span class="material-icons">
+                        local_drink
+                    </span> Oil
                 </div>
                 <div class="card-body">
                     <template v-if="loading">
@@ -126,8 +129,8 @@
                 <div class="card-body" id="configuration">
                     <template v-if="selected_percentage_of_water">
                         <div class="container mb-2 bg-selected rounded">
-                            <div class="row">
-                                <div class="col-7 small pt-1" @click="confClicked('percentage_of_water')">
+                            <div class="row" @click="confClicked('percentage_of_water')">
+                                <div class="col-7 small pt-1">
                                     油脂に対する精製水の割合<div class="small">通常 30 〜 40 %</div>
                                 </div>
                                 <div class="col-3 rounded mb-1 text-right h3">
@@ -152,8 +155,8 @@
                     </template>
                     <template v-else>
                         <div class="container mb-2 rounded">
-                            <div class="row">
-                                <div class="col-7 small pt-1" @click="confClicked('percentage_of_water')">
+                            <div class="row" @click="confClicked('percentage_of_water')">
+                                <div class="col-7 small pt-1">
                                     油脂に対する精製水の割合<div class="small">通常 30 〜 40 %</div>
                                 </div>
                                 <div class="col-3 rounded mb-1 text-right h3">
@@ -168,8 +171,8 @@
 
                     <template v-if="selected_purity_of_naoh">
                         <div class="container mb-2 bg-selected rounded">
-                            <div class="row">
-                                <div class="col-7 small pt-1" @click="confClicked('purity_of_naoh')">
+                            <div class="row" @click="confClicked('purity_of_naoh')">
+                                <div class="col-7 small pt-1">
                                     苛性ソーダの純度<div class="small">通常 95 〜 100 %</div>
                                 </div>
                                 <div class="col-3 rounded mb-1 text-right h3">
