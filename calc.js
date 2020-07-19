@@ -6,7 +6,7 @@ new Vue({
         ratio_koh_to_naoh: 120.0 / 168,
         unit_g: 'g',
         unit_cc: 'cc',
-        oil_specific_weiht: 0.9,
+        oil_specific_weight: 0.9,
         percentage_of_water: 34, // [%] 30 to 40,
         purity_of_naoh: 98, // [%] 95 to 100
         saponification_rate: 92, // [%] 85 to 95
@@ -31,13 +31,30 @@ new Vue({
         }
     },
     computed: {
+        oil_water_amount_cc: function() {
+            let oil_amount_cc = 0
+            for (let i=0; i<this.oils_array.length; i++){
+                if (this.oils_array[i].selected){
+                    let quantity = this.oils_array[i].quantity
+                    if (this.oils_array[i].unit == this.unit_g){
+                        // If the unit of the amount of oil is volume [cc]
+                        console.log(quantity)
+                        console.log(this.oil_specific_weight)
+                        quantity = quantity / this.oil_specific_weight
+                    }
+                    oil_amount_cc = oil_amount_cc + parseFloat(quantity)
+                }
+            }
+            return oil_amount_cc + this.water_amount_g
+        },
         oil_amount_g: function() {
             let oil_amount_g = 0
             for (let i=0; i<this.oils_array.length; i++){
                 if (this.oils_array[i].selected){
                     let quantity = this.oils_array[i].quantity
                     if (this.oils_array[i].unit == this.unit_cc){
-                        quantity = quantity * oil_specific_weight
+                        // If the unit of the amount of oil is volume [cc]
+                        quantity = quantity * this.oil_specific_weight
                     }
                     oil_amount_g = oil_amount_g + parseFloat(quantity)
                 }
